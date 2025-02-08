@@ -12,7 +12,6 @@ import SignupBlock from "../Components/Login/SignupBlock";
 const Login = () => {
   const [loginData, setLoginData] = useState({ email: "", password: "12" });
   const [isSignUp, setIsSignUp] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
 
   const {
     axiosInstance,
@@ -55,10 +54,6 @@ const Login = () => {
     setIsSignUp(true);
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
   const loginHtml = (
     <>
       <h1 className="text-lg font-bold">Sign in</h1>
@@ -67,20 +62,11 @@ const Login = () => {
         label="Email"
         onChange={(e) => onChangeHandler("email", e.target.value)}
       />
-      <div className="relative">
-        <Input
-          label="Password"
-          type={showPassword ? "text" : "password"}
-          onChange={(e) => onChangeHandler("password", e.target.value)}
-        />
-        <button
-          type="button"
-          onClick={togglePasswordVisibility}
-          className="absolute right-2 top-7 text-sm text-violet-600 focus:outline-none"
-        >
-          {showPassword ? "Hide" : "Show"}
-        </button>
-      </div>
+      <Input
+        label="Password"
+        type="password"
+        onChange={(e) => onChangeHandler("password", e.target.value)}
+      />
       <Button isLoading={isLoading} onClick={loginBtnHandler} name="SIGN IN" />
 
       <div className="flex space-x-1 text-xs">
